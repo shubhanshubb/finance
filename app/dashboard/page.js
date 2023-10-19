@@ -6,6 +6,7 @@ import NewExpenseForm from "./NewExpenseForm";
 import { MdDelete } from "react-icons/md";
 import { RiPencilFill } from "react-icons/ri";
 import DeleteExpense from "./DeleteExpense";
+import "./styles.css";
 
 const page = () => {
   const [expenses, setExpenses] = useState([]);
@@ -82,55 +83,55 @@ const page = () => {
 
   return (
     <div className="bg-slate-50 h-screen p-5">
-      <div className="flex flex-row px-5 py-5 border-2 border-black rounded">
-        <div className="w-2/4">
-          <h1 className="text-black text-2xl font-semibold">
-            MY EXPENSE MANAGER
-          </h1>
+      <div className="container">
+        <div className="filters flex flex-wrap items-center mb-4">
+          <div className="header mb-4">
+            <h1 className="text-black text-2xl font-semibold pt-5">
+              MY EXPENSE MANAGER
+            </h1>
+          </div>
+          <div className="w-full sm:w-1/2 lg:w-auto mb-3 sm:mb-0">
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              placeholderText="Filter By Date of Expense"
+              className="w-full border-2 border-black px-2 py-2 rounded"
+            />
+          </div>
+          <div className="w-full sm:w-1/2 lg:w-auto mb-3 sm:mb-0">
+            <input
+              className="w-full border-2 border-black px-2 py-2 rounded text-black"
+              placeholder="Search Expense By Name"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          <div className="w-full sm:w-auto">
+            <button
+              className="w-full sm:w-auto border-2 border-green-500 text-black px-2 py-2 rounded bg-green-500"
+              onClick={() => setShowModal(true)}
+            >
+              + New Expense
+            </button>
+          </div>
         </div>
-        <div className="mr-5 text-black ">
-          <DatePicker
-            selected={selectedDate}
-            onChange={(date) => setSelectedDate(date)}
-            placeholderText="Filter By Date of Expense"
-            className="w-60 border-2 border-black px-1 py-1 placeholder-gray-600 rounded pl-5"
-          />
-        </div>
-        <div className="mr-5 text-black ">
-          <input
-            className="w-60 border-2 border-black px-1 py-1 placeholder-gray-600 rounded pl-5"
-            placeholder="Search Expense By Name"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-        <div className="justify-items-end">
-          <button
-            className="w-36 border-2 border-green-500 text-black px-1 py-1 rounded justify-items-end bg-green-500"
-            onClick={() => setShowModal(true)}
-          >
-            + New Expense
-          </button>
 
-          {/* Modal */}
-          {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="bg-white p-4 rounded shadow-lg">
-                <NewExpenseForm
-                  onSubmit={handleAddExpense}
-                  onCancel={closeModal}
-                  expenseToEdit={
-                    editIndex !== null ? expenses[editIndex] : null
-                  }
-                />
-              </div>
+        {/* Modal */}
+        {showModal && (
+          <div className="fixed inset-0 flex items-center justify-center z-50">
+            <div className="bg-white p-4 rounded shadow-lg">
+              <NewExpenseForm
+                onSubmit={handleAddExpense}
+                onCancel={closeModal}
+                expenseToEdit={editIndex !== null ? expenses[editIndex] : null}
+              />
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Display Expenses */}
-      <div className="mt-16 px-20">
+      <div className="mt-16 px-20 table-container">
         <table className="w-full ">
           <thead>
             <tr className="bg-stone-300 text-white">

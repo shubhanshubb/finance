@@ -1,0 +1,66 @@
+/* styles.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    border-width: 2px;
+    border-color: black;
+  }
+  
+  .header {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .expense-list {
+    overflow-x: auto;
+  }
+
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  /* Style the table headers */
+  .table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .table-container th, .table-container td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .filters {
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+  
+    .filters .react-datepicker-wrapper {
+      margin-bottom: 10px;
+    }
+  
+    .expense-list table {
+      font-size: 12px;
+    }
+
+    .table-container th, .table-container td {
+      font-size: 12px;
+    }
+  }
